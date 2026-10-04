@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://etsyprojects123.github.io/routeready/sitemap.xml
