@@ -123,7 +123,7 @@
 <script>
 /* Checkout links: paste Gumroad / Stripe payment links here when ready. */
 const CHECKOUT = {
-  bundle: '#buy',
+  bundle: 'https://craftopia001.gumroad.com/l/pool-pro-pack',
   'single-report': '#buy',
   'single-log': '#buy',
   'single-quote': '#buy'
@@ -183,9 +183,14 @@ FAQS.forEach(([q, a]) => {
 
 document.querySelectorAll('[data-checkout]').forEach(el => {
   const key = el.getAttribute('data-checkout');
-  if (CHECKOUT[key] && CHECKOUT[key] !== '#buy') el.setAttribute('href', CHECKOUT[key]);
+  const url = CHECKOUT[key] || '#';
+  if (url !== '#buy' && url !== '#') {
+    el.setAttribute('href', url);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  }
   el.addEventListener('click', e => {
-    if ((CHECKOUT[key] || '#') === '#') { e.preventDefault(); document.getElementById('buy').scrollIntoView({behavior:'smooth'}); }
+    if (url === '#') { e.preventDefault(); document.getElementById('buy').scrollIntoView({behavior:'smooth'}); }
   });
 });
 
